@@ -13,35 +13,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  double stepperValue = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SwitchButton(
-                labels: ['Buy', 'Sell'],
-                callback: (int index) => print(index),
-              ),
-            ),
-            ValueStepper(
-              initialValue: 1000,
-              prefix: '\$',
-              stepSize: 100,
-              callback: (value) => print(value),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SwitchButton(
+                  labels: ['Buy', 'Sell'],
+                  callback: (int index) => print(index),
+                ),
+              ),
+              ValueStepper(
+                initialValue: stepperValue,
+                prefix: '\$',
+                stepSize: 100,
+                callback: (value) => print(value),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: () => setState(() => stepperValue = 1000)));
   }
 }

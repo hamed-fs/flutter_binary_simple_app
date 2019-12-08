@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_binary_simple_app/theme/app_theme.dart';
+
 class SwitchButton extends StatefulWidget {
   final bool canDeselect;
   final int defaultSelection;
@@ -27,17 +29,17 @@ class _SwitchButtonState extends State<SwitchButton> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: AppTheme.lessProminent,
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       child: ToggleButtons(
-        color: Colors.white,
-        selectedColor: Colors.black,
-        fillColor: Colors.white,
-        borderColor: Colors.grey,
-        selectedBorderColor: Colors.grey,
+        color: AppTheme.prominent,
+        selectedColor: AppTheme.disabled,
+        fillColor: AppTheme.prominent,
+        borderColor: AppTheme.lessProminent,
+        selectedBorderColor: AppTheme.lessProminent,
         borderRadius: BorderRadius.circular(5.0),
-        children: widget.labels.map((String label) => Text(label)).toList(),
+        children: widget.labels.map((String label) => Text(label, style: AppTheme.buttom)).toList(),
         onPressed: (int index) => setState(() {
           _handleButtonSelection(index);
           widget.callback(index);

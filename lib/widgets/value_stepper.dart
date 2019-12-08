@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
+import 'package:flutter_binary_simple_app/theme/app_theme.dart';
+
 const int DECREAMENT = 0;
 const int CALLBACK = 1;
 const int INCREAMENT = 2;
@@ -33,24 +35,27 @@ class _ValueStepperState extends State<ValueStepper> {
   }
 
   @override
+  void didUpdateWidget(ValueStepper oldWidget) {
+    _value = widget.initialValue;
+
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: AppTheme.lessProminent,
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       child: ToggleButtons(
-        color: Colors.white,
-        selectedColor: Colors.black,
-        fillColor: Colors.white,
-        borderColor: Colors.grey,
-        selectedBorderColor: Colors.grey,
+        color: AppTheme.prominent,
+        borderColor: AppTheme.lessProminent,
         borderRadius: BorderRadius.circular(5.0),
-        disabledColor: Colors.red,
         children: <Widget>[
-          Text('-'),
-          Text('${widget.prefix} ${_numberFormat.format(_value)}'),
-          Text('+'),
+          Text('-', style: AppTheme.buttom),
+          Text('${widget.prefix} ${_numberFormat.format(_value)}', style: AppTheme.caption),
+          Text('+', style: AppTheme.buttom),
         ],
         onPressed: (int index) => _doAction(index),
         isSelected: [false, false, false],
@@ -72,9 +77,5 @@ class _ValueStepperState extends State<ValueStepper> {
     }
 
     setState(() => _value);
-  }
-
-  void updateValue(double value) {
-    setState(() => _value = value);
   }
 }
