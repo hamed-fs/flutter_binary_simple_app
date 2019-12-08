@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double stepperValue = 0;
+  double stepperValue = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,12 @@ class _HomePageState extends State<HomePage> {
               ValueStepper(
                 initialValue: stepperValue,
                 prefix: '\$',
-                stepSize: 100,
+                stepSize: 100.0,
                 callback: (value) => print(value),
               ),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () => setState(() => stepperValue = 1000)));
+        floatingActionButton: FloatingActionButton(onPressed: () => setState(() => stepperValue = 1000.0)));
   }
 }

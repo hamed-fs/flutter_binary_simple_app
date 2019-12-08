@@ -6,6 +6,7 @@ class SwitchButton extends StatefulWidget {
   final bool canDeselect;
   final int defaultSelection;
   final List<String> labels;
+  final double width;
 
   final void Function(int) callback;
 
@@ -13,6 +14,7 @@ class SwitchButton extends StatefulWidget {
     @required this.labels,
     this.defaultSelection = 0,
     this.canDeselect = false,
+    this.width = 200.0,
     this.callback,
   });
 
@@ -21,10 +23,13 @@ class SwitchButton extends StatefulWidget {
 }
 
 class _SwitchButtonState extends State<SwitchButton> {
+  double _width;
   List<bool> _isSelected;
 
   @override
   void initState() {
+    _width = widget.width / widget.labels.length;
+
     _initializeButtons();
 
     super.initState();
@@ -38,17 +43,28 @@ class _SwitchButtonState extends State<SwitchButton> {
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       child: ToggleButtons(
+        renderBorder: false,
         color: AppTheme.prominent,
         selectedColor: AppTheme.disabled,
         fillColor: AppTheme.prominent,
-        borderColor: AppTheme.lessProminent,
-        selectedBorderColor: AppTheme.lessProminent,
         borderRadius: BorderRadius.circular(5.0),
-        children: widget.labels.map((String label) => Text(label, style: AppTheme.buttom)).toList(),
-        onPressed: (int index) => setState(() {
-          _handleButtonSelection(index);
+        children: widget.labels
+            .map(
+              (String label) => Container(
+                width: _width,
+                child: Text(
+                  label,
+                  style: AppTheme.buttom,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            )
+            .toList(),
+        onPressed: (int index) {
           widget.callback(index);
-        }),
+
+          setState(() => _handleButtonSelection(index));
+        },
         isSelected: _isSelected,
       ),
     );

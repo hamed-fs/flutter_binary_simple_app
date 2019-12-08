@@ -10,6 +10,7 @@ const int INCREAMENT = 2;
 
 class ValueStepper extends StatefulWidget {
   final double initialValue;
+  final bool allowNegativeValue;
   final double stepSize;
   final String prefix;
   final NumberFormat numberFormat;
@@ -18,6 +19,7 @@ class ValueStepper extends StatefulWidget {
 
   const ValueStepper({
     this.initialValue = 0.0,
+    this.allowNegativeValue = false,
     this.stepSize = 1.0,
     this.prefix = '',
     this.numberFormat,
@@ -35,7 +37,7 @@ class _ValueStepperState extends State<ValueStepper> {
   @override
   void initState() {
     _value = widget.initialValue;
-    _numberFormat = widget.numberFormat ?? NumberFormat(',###.00');
+    _numberFormat = widget.numberFormat ?? NumberFormat(',##0');
 
     super.initState();
   }
@@ -55,33 +57,36 @@ class _ValueStepperState extends State<ValueStepper> {
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       child: ToggleButtons(
+        renderBorder: false,
         color: AppTheme.prominent,
-        borderColor: AppTheme.lessProminent,
         borderRadius: BorderRadius.circular(5.0),
         children: <Widget>[
-          Text('-', style: AppTheme.buttom),
-          Text('${widget.prefix} ${_numberFormat.format(_value)}', style: AppTheme.caption),
-          Text('+', style: AppTheme.buttom),
+          Icon(Icons.remove),
+          Container(child: Text('${widget.prefix} ${_numberFormat.format(_value)}', textAlign: TextAlign.center, style: AppTheme.buttom)),
+          Icon(Icons.add),
         ],
-        onPressed: (int index) => _doAction(index),
+        onPressed: (int index) => _react(index),
         isSelected: [false, false, false],
       ),
     );
   }
 
-  void _doAction(int index) {
+  void _react(int index) {
     switch (index) {
       case DECREAMENT:
         _value -= widget.stepSize;
+        _value = (_value < 0.0 && !widget.allowNegativeValue) ? 0.0 : _value;
+
+        setState(() => _value);
         break;
       case CALLBACK:
         widget.callback(_value);
         break;
       case INCREAMENT:
         _value += widget.stepSize;
+
+        setState(() => _value);
         break;
     }
-
-    setState(() => _value);
   }
 }
