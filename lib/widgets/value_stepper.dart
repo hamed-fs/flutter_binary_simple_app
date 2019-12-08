@@ -75,7 +75,7 @@ class _ValueStepperState extends State<ValueStepper> {
     switch (index) {
       case DECREAMENT:
         _value -= widget.stepSize;
-        _value = (_value < 0.0 && !widget.allowNegativeValue) ? 0.0 : _value;
+        _value = _value < 0.0 && !widget.allowNegativeValue ? 0.0 : _value;
 
         setState(() => _value);
         break;
