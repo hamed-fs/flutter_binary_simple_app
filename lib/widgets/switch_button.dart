@@ -9,7 +9,12 @@ class SwitchButton extends StatefulWidget {
 
   final void Function(int) callback;
 
-  const SwitchButton({@required this.labels, this.defaultSelection = 0, this.canDeselect = false, this.callback});
+  const SwitchButton({
+    @required this.labels,
+    this.defaultSelection = 0,
+    this.canDeselect = false,
+    this.callback,
+  });
 
   @override
   _SwitchButtonState createState() => _SwitchButtonState();

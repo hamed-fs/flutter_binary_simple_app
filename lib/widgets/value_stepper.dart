@@ -16,7 +16,13 @@ class ValueStepper extends StatefulWidget {
 
   final void Function(double) callback;
 
-  const ValueStepper({this.initialValue = 0, this.stepSize = 1, this.prefix = '', this.numberFormat, this.callback});
+  const ValueStepper({
+    this.initialValue = 0.0,
+    this.stepSize = 1.0,
+    this.prefix = '',
+    this.numberFormat,
+    this.callback,
+  });
 
   @override
   _ValueStepperState createState() => _ValueStepperState();
