@@ -105,14 +105,19 @@ class _ValueStepperState extends State<ValueStepper> {
         _value = _value < 0.0 && !widget.allowNegativeValue ? 0.0 : _value;
 
         setState(() => _value);
+
         break;
       case CALLBACK:
-        widget?.callback(_value);
+        if (widget.callback != null) {
+          widget.callback(_value);
+        }
+
         break;
       case INCREAMENT:
         _value += widget.stepSize;
 
         setState(() => _value);
+        
         break;
     }
   }

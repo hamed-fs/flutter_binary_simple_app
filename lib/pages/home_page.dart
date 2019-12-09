@@ -35,8 +35,9 @@ class _HomePageState extends State<HomePage> {
               ValueStepper(
                 initialValue: stepperValue,
                 prefix: '\$',
-                stepSize: 100.0,
-                callback: null,
+                allowNegativeValue: true,
+                stepSize: 10.0,
+                callback: (value) => print(value),
               ),
             ],
           ),

@@ -57,7 +57,9 @@ class _SwitchButtonState extends State<SwitchButton> {
             )
             .toList(),
         onPressed: (int index) {
-          widget?.callback(index);
+          if (widget.callback != null) {
+            widget.callback(index);
+          }
 
           setState(() => _handleButtonSelection(index));
         },
