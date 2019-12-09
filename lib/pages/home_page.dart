@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_binary_simple_app/widgets/switch_button.dart';
-import 'package:flutter_binary_simple_app/widgets/value_stepper.dart';
+import 'package:flutter_binary_simple_app/widgets/list_item.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -13,35 +12,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double stepperValue = 0.0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SwitchButton(
-                  labels: ['Buy', 'Sell'],
-                  callback: (int index) => print(index),
-                ),
-              ),
-              ValueStepper(
-                initialValue: stepperValue,
-                prefix: '\$',
-                allowNegativeValue: true,
-                stepSize: 10.0,
-                callback: (value) => print(value),
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(onPressed: () => setState(() => stepperValue = 1000.0)));
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: ListView.separated(
+        itemCount: 20,
+        separatorBuilder: (context, index) {
+          return Divider(color: Colors.black, height: 1.0);
+        },
+        itemBuilder: (condex, index) {
+          return MyListItem();
+        },
+      ),
+    );
   }
 }
