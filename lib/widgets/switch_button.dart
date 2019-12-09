@@ -39,29 +39,25 @@ class _SwitchButtonState extends State<SwitchButton> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.lessProminent,
+        color: AppTheme.lessProminentColor,
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       child: ToggleButtons(
-        renderBorder: false,
-        color: AppTheme.prominent,
-        selectedColor: AppTheme.disabled,
-        fillColor: AppTheme.prominent,
+        renderBorder: true,
+        color: AppTheme.prominentColor,
+        selectedColor: AppTheme.lessProminentColor,
+        fillColor: AppTheme.prominentColor,
         borderRadius: BorderRadius.circular(5.0),
         children: widget.labels
             .map(
               (String label) => Container(
                 width: _width,
-                child: Text(
-                  label,
-                  style: AppTheme.buttom,
-                  textAlign: TextAlign.center,
-                ),
+                child: Text(label, style: AppTheme.switchButtonStyle, textAlign: TextAlign.center),
               ),
             )
             .toList(),
         onPressed: (int index) {
-          widget.callback(index);
+          widget?.callback(index);
 
           setState(() => _handleButtonSelection(index));
         },

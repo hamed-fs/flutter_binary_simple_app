@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static Color accentCoralRed = Color(0xFFFF444F);
-  static Color accentGulfStream = Color(0xFF85ACB0);
+  static Color accentCoralRedColor = Color(0xFFFF444F);
+  static Color accentGulfStreamColor = Color(0xFF85ACB0);
 
-  static Color brickRed = Color(0xFFCC2E3D);
-  static Color persianGreen = Color(0xFF00A79E);
+  static Color brickRedColor = Color(0xFFCC2E3D);
+  static Color persianGreenColor = Color(0xFF00A79E);
 
-  static Color prominent = Color(0xFFFFFFFF);
-  static Color general = Color(0xFFC2C2C2);
-  static Color lessProminent = Color(0xFF6E6E6E); 
-  static Color disabled = Color(0xFF3E3E3E);
+  static Color prominentColor = Color(0xFFFFFFFF);
+  static Color generalColor = Color(0xFFC2C2C2);
+  static Color lessProminentColor = Color(0xFF6E6E6E);
+  static Color disabledColor = Color(0xFF3E3E3E);
 
-  static TextStyle display3 = TextStyle(fontSize: 56.0, fontWeight: FontWeight.normal);
-  static TextStyle display2 = TextStyle(fontSize: 45.0, fontWeight: FontWeight.normal);
-  static TextStyle display1 = TextStyle(fontSize: 34.0, fontWeight: FontWeight.normal);
+  static TextStyle display3Style = TextStyle(fontSize: 56.0, fontWeight: FontWeight.normal, color: prominentColor);
+  static TextStyle display2Style = TextStyle(fontSize: 45.0, fontWeight: FontWeight.normal, color: prominentColor);
+  static TextStyle display1Style = TextStyle(fontSize: 34.0, fontWeight: FontWeight.normal, color: prominentColor);
 
-  static TextStyle headline = TextStyle(fontSize: 24.0, fontWeight: FontWeight.normal);
-  static TextStyle title = TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal);
-  static TextStyle subheading = TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal);
+  static TextStyle headlineStyle = TextStyle(fontSize: 24.0, fontWeight: FontWeight.normal, color: prominentColor);
+  static TextStyle titleStyle = TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal, color: prominentColor);
+  static TextStyle subheadingStyle = TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: prominentColor);
 
-  static TextStyle body2 = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold);
-  static TextStyle body1 = TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal);
+  static TextStyle body2Style = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: prominentColor);
+  static TextStyle body1Style = TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal, color: prominentColor);
 
-  static TextStyle caption = TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal);
+  static TextStyle captionStyle = TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal, color: prominentColor);
 
-  static TextStyle buttom = TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal);
+  static TextStyle buttonStyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal, color: prominentColor);
+
+  static TextStyle switchButtonStyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold);
+  static TextStyle valueStepperStyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: prominentColor);
 }

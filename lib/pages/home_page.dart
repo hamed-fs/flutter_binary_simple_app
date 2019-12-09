@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Row(
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                 initialValue: stepperValue,
                 prefix: '\$',
                 stepSize: 100.0,
-                callback: (value) => print(value),
+                callback: null,
               ),
             ],
           ),

@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:flutter_binary_simple_app/theme/app_theme.dart';
 
 const int DECREAMENT = 0;
-const int CALLBACK = 1;
-const int INCREAMENT = 2;
+const int INCREAMENT = 1;
+const int CALLBACK = 2;
 
 class ValueStepper extends StatefulWidget {
   final double initialValue;
@@ -52,27 +52,54 @@ class _ValueStepperState extends State<ValueStepper> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: AppTheme.lessProminent,
+      child: Material(
+        color: AppTheme.lessProminentColor,
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
-      ),
-      child: ToggleButtons(
-        renderBorder: false,
-        color: AppTheme.prominent,
-        borderRadius: BorderRadius.circular(5.0),
-        children: <Widget>[
-          Icon(Icons.remove),
-          Container(child: Text('${widget.prefix} ${_numberFormat.format(_value)}', textAlign: TextAlign.center, style: AppTheme.buttom)),
-          Icon(Icons.add),
-        ],
-        onPressed: (int index) => _react(index),
-        isSelected: [false, false, false],
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 7.0),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Icon(Icons.remove, color: AppTheme.prominentColor),
+                onTap: () => _react(DECREAMENT),
+              ),
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minWidth: 80.0),
+              child: Container(
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 7.0),
+                    child: Text(
+                      '${widget.prefix} ${_numberFormat.format(_value)}',
+                      style: AppTheme.valueStepperStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  onTap: () => _react(CALLBACK),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 7.0),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Icon(Icons.add, color: AppTheme.prominentColor),
+                onTap: () => _react(INCREAMENT),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  void _react(int index) {
-    switch (index) {
+  void _react(int action) {
+    switch (action) {
       case DECREAMENT:
         _value -= widget.stepSize;
         _value = _value < 0.0 && !widget.allowNegativeValue ? 0.0 : _value;
@@ -80,7 +107,7 @@ class _ValueStepperState extends State<ValueStepper> {
         setState(() => _value);
         break;
       case CALLBACK:
-        widget.callback(_value);
+        widget?.callback(_value);
         break;
       case INCREAMENT:
         _value += widget.stepSize;
